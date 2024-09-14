@@ -320,7 +320,7 @@ window.addEventListener('DOMContentLoaded', () => {
         } else if (type === 'discord') {
             contentHTML = `
                 <h2>Join our Discord Server</h2>
-                <p>Connect with us and the community on Discord.</p>
+                <p>Connect with us and the community on Discord. In discord you can join the show while we are live by using the VC channels to call in!</p>
                 <a href="https://discord.gg/9UrtGqkK22" target="_blank">Join Discord</a>
             `;
         }

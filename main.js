@@ -119,6 +119,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 fetchUserBalance();
                 showThanksBalanceSection();
                 showScrollingBalance();
+                showTextSections();  // Show text sections only after login
             } catch (error) {
                 console.error(error);
             }
@@ -126,7 +127,7 @@ window.addEventListener('DOMContentLoaded', () => {
             modal.style.display = 'block';
             modalBody.innerHTML = `
                 <h2>No Wallet Detected</h2>
-                <p>Please install a wallet to use this feature.</p>
+                <p>Please install a wallet to log in and access other features and more on willsmusichouse.com.</p>
                 <p>
                     <a href="https://rabby.io/" target="_blank">Install Rabby</a><br>
                     <a href="https://metamask.io/" target="_blank">Install MetaMask</a>
@@ -199,6 +200,14 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('scrolling-balance').style.display = 'none';
     }
 
+    function showTextSections() {
+        document.getElementById('text-sections').style.display = 'block';
+    }
+
+    function hideTextSections() {
+        document.getElementById('text-sections').style.display = 'none';
+    }
+
     loginButton.addEventListener('click', async () => {
         if (accounts.length === 0) {
             await connectMetaMask();
@@ -209,6 +218,7 @@ window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('thanks-balance').textContent = 'Connect your wallet to see your balance.';
             hideThanksBalanceSection();
             hideScrollingBalance();
+            hideTextSections();  // Hide text sections after logout
         }
     });
 

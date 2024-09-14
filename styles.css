@@ -226,6 +226,7 @@ hr {
     padding: 10px;
     column-count: 2;
     column-gap: 20px;
+    display: none; /* Hidden by default until wallet connection */
 }
 
 .text-section {
@@ -243,6 +244,7 @@ hr {
     margin: 0;
 }
 
+/* Footer Styling */
 footer {
     background-color: #808080;
     padding: 10px;

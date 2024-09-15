@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Include Web3.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+    <style>
+        /* Centered message style */
+        #exclusive-message {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: none; /* Hidden initially */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -58,87 +68,56 @@
     </div>
     <hr>
 
-   <!-- Content Section (Always visible) -->
-<div id="content-section">
-    <div id="youtube-embed">
-        <!-- New Header for YouTube Embed -->
-        <h2>watch the latest content</h2>
-        <!-- Main YouTube video embed -->
-        <iframe src="https://www.youtube.com/embed/54BGJejWZ4c" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-        <!-- Additional Embeds -->
-        <div id="additional-embeds">
-            <iframe src="https://www.youtube.com/embed/7Cbwp7XJjyU" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/oYA9vj6xUJI" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/icvQWEiY9cM" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/YH0biziyGuk" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    <!-- Content Section (Always visible) -->
+    <div id="content-section">
+        <div id="youtube-embed">
+            <h2>watch the latest content</h2>
+            <iframe src="https://www.youtube.com/embed/54BGJejWZ4c" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+            <div id="additional-embeds">
+                <iframe src="https://www.youtube.com/embed/7Cbwp7XJjyU" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/oYA9vj6xUJI" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/icvQWEiY9cM" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/YH0biziyGuk" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div id="embed-section">
+            <h2>donate ETH to support us!</h2>
+            <iframe
+                src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc20.html?contract=0x819cF7Fa5024EE479D7e55865C149730c808a165&chain=%7B%22name%22%3A%22Base%22%2C%22chain%22%3A%22ETH%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F8453.rpc.thirdweb.com%2F%24%7BTHIRDWEB_API_KEY%7D%22%5D%2C%22nativeCurrency%22%3A%7B%22name%22%3A%22Ether%22%2C%22symbol%22%3A%22ETH%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22base%22%2C%22chainId%22%3A8453%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22base%22%2C%22icon%22%3A%7B%22url%22%3A%22ipfs%3A%2F%2FQmaxRoHpxZd8PqccAynherrMznMufG6sdmHZLihkECXmZv%22%2C%22width%22%3A1200%2C%22height%22%3A1200%2C%22format%22%3A%22png%22%7D%7D&clientId=e602589e6814eff3686bdea9a191db4c&theme=light&primaryColor=purple"
+                width="100%"
+                height="600px"
+                style="max-width:100%;"
+                frameborder="0"
+            ></iframe>
         </div>
     </div>
-    <div id="embed-section">
-        <!-- New Header for Right Embed Section -->
-        <h2>donate ETH to support us!</h2>
-        <!-- Restored Right Embed -->
-        <iframe
-            src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc20.html?contract=0x819cF7Fa5024EE479D7e55865C149730c808a165&chain=%7B%22name%22%3A%22Base%22%2C%22chain%22%3A%22ETH%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F8453.rpc.thirdweb.com%2F%24%7BTHIRDWEB_API_KEY%7D%22%5D%2C%22nativeCurrency%22%3A%7B%22name%22%3A%22Ether%22%2C%22symbol%22%3A%22ETH%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22base%22%2C%22chainId%22%3A8453%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22base%22%2C%22icon%22%3A%7B%22url%22%3A%22ipfs%3A%2F%2FQmaxRoHpxZd8PqccAynherrMznMufG6sdmHZLihkECXmZv%22%2C%22width%22%3A1200%2C%22height%22%3A1200%2C%22format%22%3A%22png%22%7D%7D&clientId=e602589e6814eff3686bdea9a191db4c&theme=light&primaryColor=purple"
-            width="100%"
-            height="600px"
-            style="max-width:100%;"
-            frameborder="0"
-        ></iframe>
+
+    <!-- Exclusive content login message (below embeds and above stories) -->
+    <div id="exclusive-message">
+        Log in to see exclusive content!!
     </div>
-</div>
 
-    <!-- Text Sections (Newspaper Layout) (Hidden unless wallet connected) -->
-    <div id="text-sections" style="display: none;">
+    <!-- Text Sections (Visible only when logged in) -->
+    <div id="story-sections" style="display: none;">
         <div class="text-section">
-            <h2>The Pressure of Streaming: Can Artists Make a Living?</h2>
+            <h2>Inside the Cleveland Music Scene: An Interview with 55Bagz</h2>
             <p>By Buddy – Will's AI</p>
-            <p>
-                In a recent episode of the <strong>WillsHouse Podcast</strong>, the crew tackled one of the music industry’s biggest challenges: streaming payouts. The hosts debated whether platforms like Spotify really support independent artists, or if they are simply a promotional tool for the industry giants.
-            </p>
-            <p>
-                One of the hosts pointed out that “streams aren’t where the real money is at,” stressing that major artists make their income from brand deals, tours, and merchandise. The consensus? If you're an independent artist, you need to look beyond streaming for income.
-            </p>
-            <p>
-                But the discussion didn’t stop there. Some of the team thought it might make sense to pay more for streaming services if it meant a better payout for artists, while others argued that artists need to first prove themselves before expecting more from platforms.
-            </p>
+            <p>During a candid interview on the WillsHouse Podcast, 55Bagz shares his wild journey through the Cleveland music scene, including near-death experiences, label negotiations, and stories of his come-up.</p>
+            <a href="stories.html#story1">Read Full Story</a>
         </div>
 
         <div class="text-section">
-            <h2>How AI is Shaking Up Music Production</h2>
+            <h2>UnknownPhrazes: From Rap to EDM - Exploring a New Path</h2>
             <p>By Buddy – Will's AI</p>
-            <p>
-                During the <strong>WillsHouse Podcast</strong>, AI’s role in the creative world became a hot topic of conversation. With tools like FL Studio 21 and ChatGPT taking over, the question remains: is AI a friend or foe to the music industry?
-            </p>
-            <p>
-                One host shared their experiences with FL21, marveling at how AI has revolutionized beat-making. But with every new technology comes hesitation. The fear of AI replacing real, human creativity was on everyone’s mind.
-            </p>
+            <p>UnknownPhrazes sits down on the WillsHouse Podcast to discuss his evolution from rap to electronic music, his upcoming EP, and how Cleveland’s underground scene continues to inspire him.</p>
+            <a href="stories.html#story2">Read Full Story</a>
         </div>
 
         <div class="text-section">
-            <h2>The Changing Landscape of Content Creation</h2>
+            <h2>Inside the Minds of Sav and Visual 9: Music, Creativity, and Life Lessons</h2>
             <p>By Buddy – Will's AI</p>
-            <p>
-                In a time where social media and digital presence are everything, content creation has become more competitive than ever. On a recent episode of the <strong>WillsHouse Podcast</strong>, the hosts discussed the importance of creating unique content and how trends are constantly changing.
-            </p>
-            <p>
-                One of the hosts admitted they’ve been deep in the trenches, studying analytics and identifying trending topics. "I'm bad at posting regularly," one host said, acknowledging how difficult it is to stay on top of content creation in today’s fast-paced world.
-            </p>
-        </div>
-
-        <div class="text-section">
-            <h2>NBA Playoffs and the Kyrie Conundrum</h2>
-            <p>By Buddy – Will's AI</p>
-            <p>
-                It wouldn’t be the <strong>WillsHouse Podcast</strong> without diving into sports, and this week’s NBA Playoff discussion was no different. Kyrie Irving and the Mavericks were hot topics, and opinions on how Kyrie’s been performing were split.
-            </p>
-        </div>
-
-        <div class="text-section">
-            <h2>Can Money Buy Happiness? The Podcast Takes a Stance</h2>
-            <p>By Buddy – Will's AI</p>
-            <p>
-                The age-old question of whether money can buy happiness sparked an intense debate on the latest episode of the <strong>WillsHouse Podcast</strong>. For some hosts, the answer was clear—money can bring comfort, freedom, and the chance to experience life on your own terms.
-            </p>
+            <p>Sav and Visual 9 open up about their creative processes, personal growth, and upcoming projects during their interview on the WillsHouse Podcast. Get a glimpse into their evolving careers.</p>
+            <a href="stories.html#story3">Read Full Story</a>
         </div>
     </div>
 
@@ -148,22 +127,47 @@
     <footer>
         <div id="connect-with-us">
             <h2>Connect with Us</h2>
-            <p>
-                Stay connected and explore more and click the links below to dive in directly:
-            </p>
+            <p>Stay connected and explore more and click the links below to dive in directly:</p>
             <ul>
                 <li><strong><a href="https://www.youtube.com/@willsmusichouse" target="_blank">willsmusichouse</a></strong> – Visit our YouTube channel for exclusive music content, interviews, and live performances.</li>
                 <li><strong><a href="https://www.youtube.com/@willsmusichouse/streams" target="_blank">willshouse podcast</a></strong> – Tune in to our podcast to hear the latest on music, gaming, and pop culture. Don’t forget to catch our live streams!</li>
                 <li><strong><a href="https://www.instagram.com/wmhlive/" target="_blank">@wmhlive</a></strong> – Follow us on Instagram for behind-the-scenes content, live event updates, and more.</li>
                 <li><strong><a href="https://discord.gg/9UrtGqkK22" target="_blank">Join the Discord</a></strong> – Be part of the conversation! Share music, join voice chats, and even call in to the podcast live.</li>
             </ul>
-            <p>
-                Click any of the headings above or the links here to get involved and stay connected with us across all platforms.
-            </p>
+            <p>Click any of the headings above or the links here to get involved and stay connected with us across all platforms.</p>
         </div>
     </footer>
 
     <!-- Main JavaScript File -->
-    <script src="main.js"></script>
+    <script src="wallet.js"></script>
+    <script src="game.js"></script>
+    <script src="modal.js"></script>
+
+    <script>
+        // Function to update the story section and exclusive message based on login status
+        function updateStorySection(isLoggedIn) {
+            const loginMessage = document.getElementById('exclusive-message');
+            const storiesContent = document.getElementById('story-sections');
+
+            if (isLoggedIn) {
+                loginMessage.style.display = 'none';
+                storiesContent.style.display = 'block';
+            } else {
+                loginMessage.style.display = 'block';
+                storiesContent.style.display = 'none';
+            }
+        }
+
+        // Example: Simulate login status (replace with real login logic)
+        let isLoggedIn = false; // Replace with actual login status check
+        updateStorySection(isLoggedIn);
+
+        // Simulate login event for testing
+        document.getElementById('login-button').addEventListener('click', () => {
+            isLoggedIn = !isLoggedIn; // Toggle login status
+            updateStorySection(isLoggedIn);
+        });
+    </script>
+
 </body>
 </html>

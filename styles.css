@@ -180,6 +180,28 @@ hr {
     color: black;
 }
 
+/* Top 10 Holders */
+#thanks-top-holders {
+    background-color: #F0F0F0;
+    padding: 10px;
+    border: 2px solid #808080;
+    display: none; /* Hidden by default until connected */
+}
+
+#thanks-top-holders h2 {
+    font-size: 20px;
+}
+
+#thanks-top-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#thanks-top-list li {
+    font-size: 16px;
+    padding: 5px;
+}
+
 /* Content Section */
 #content-section {
     display: flex;
@@ -229,19 +251,29 @@ hr {
     display: none; /* Hidden by default until wallet connection */
 }
 
-.text-section {
-    break-inside: avoid;
-    margin-bottom: 20px;
-}
-
-.text-section h2 {
+#text-sections h2 {
     font-size: 24px;
-    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-.text-section p {
+#text-sections p {
     font-size: 16px;
-    margin: 0;
+    margin-bottom: 10px;
+}
+
+#story-scroll-container {
+    height: 600px;
+    overflow-y: scroll;
+    padding: 10px;
+    border: 2px solid #808080;
+}
+
+.text-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
 }
 
 /* Footer Styling */

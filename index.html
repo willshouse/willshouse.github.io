@@ -143,31 +143,5 @@
     <script src="game.js"></script>
     <script src="modal.js"></script>
 
-    <script>
-        // Function to update the story section and exclusive message based on login status
-        function updateStorySection(isLoggedIn) {
-            const loginMessage = document.getElementById('exclusive-message');
-            const storiesContent = document.getElementById('story-sections');
-
-            if (isLoggedIn) {
-                loginMessage.style.display = 'none';
-                storiesContent.style.display = 'block';
-            } else {
-                loginMessage.style.display = 'block';
-                storiesContent.style.display = 'none';
-            }
-        }
-
-        // Example: Simulate login status (replace with real login logic)
-        let isLoggedIn = false; // Replace with actual login status check
-        updateStorySection(isLoggedIn);
-
-        // Simulate login event for testing
-        document.getElementById('login-button').addEventListener('click', () => {
-            isLoggedIn = !isLoggedIn; // Toggle login status
-            updateStorySection(isLoggedIn);
-        });
-    </script>
-
 </body>
 </html>

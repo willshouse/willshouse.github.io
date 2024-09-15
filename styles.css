@@ -244,36 +244,48 @@ hr {
 }
 
 /* Text Sections (Newspaper Layout) */
-#text-sections {
+#story-sections {
     padding: 10px;
     column-count: 2;
     column-gap: 20px;
-    display: none; /* Hidden by default until wallet connection */
+    /* Ensure the container can expand based on content */
+    width: 100%;
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto; /* Center the container */
 }
 
-#text-sections h2 {
+#story-sections h2 {
     font-size: 24px;
     font-weight: bold;
+    /* Ensure headings don't get split */
+    break-inside: avoid;
 }
 
-#text-sections p {
+#story-sections p {
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-#story-scroll-container {
-    height: 600px;
-    overflow-y: scroll;
-    padding: 10px;
-    border: 2px solid #808080;
-}
-
+/* Prevent text sections from breaking across columns */
 .text-section {
     margin-bottom: 20px;
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 8px;
     border: 1px solid #e0e0e0;
+    /* Prevent the entire section from being split */
+    break-inside: avoid;
+    /* Optional: Add box-sizing for better padding handling */
+    box-sizing: border-box;
+}
+
+/* Exclusive Message Styling */
+#exclusive-message {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: none; /* Initially hidden; managed by wallet.js */
 }
 
 /* Footer Styling */
@@ -299,5 +311,10 @@ footer p {
 
     #youtube-embed, #embed-section {
         max-width: 100%;
+    }
+
+    /* Adjust story sections for single column on small screens */
+    #story-sections {
+        column-count: 1;
     }
 }

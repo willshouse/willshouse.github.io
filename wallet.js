@@ -1,7 +1,13 @@
+// wallet.js
+
 window.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.getElementById('login-button');
     let accounts = [];
     let web3;
+
+    // Modal elements
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modal-body');
 
     // Function to connect to MetaMask and handle login
     async function connectMetaMask() {
@@ -23,16 +29,20 @@ window.addEventListener('DOMContentLoaded', () => {
                 showTopThanksHolders();  // Show top holders after login
             } catch (error) {
                 console.error(error);
+                updateLoginStatus(false);
+                hideScrollingBalance();
+                hideTextSections();
+                hideTopThanksHolders();
             }
         } else {
             modal.style.display = 'block';
             modalBody.innerHTML = `
-    <h2>No Wallet Detected</h2>
-    <p>Please install a wallet to log in and access other features on willsmusichouse.com.</p>
-    <p><a href="https://rabby.io/" target="_blank">Install Rabby</a><br>
-    <a href="https://metamask.io/" target="_blank">Install MetaMask</a></p>
-    <p>For the best mobile login experience, we recommend using <strong><a href="https://www.coinbase.com/wallet" target="_blank">Coinbase Wallet</a></strong>.</p>
-`;
+                <h2>No Wallet Detected</h2>
+                <p>Please install a wallet to log in and access other features on willsmusichouse.com.</p>
+                <p><a href="https://rabby.io/" target="_blank">Install Rabby</a><br>
+                <a href="https://metamask.io/" target="_blank">Install MetaMask</a></p>
+                <p>For the best mobile login experience, we recommend using <strong><a href="https://www.coinbase.com/wallet" target="_blank">Coinbase Wallet</a></strong>.</p>
+            `;
         }
     }
 
@@ -78,11 +88,17 @@ window.addEventListener('DOMContentLoaded', () => {
             loginButton.innerHTML = '';
             loginButton.appendChild(statusDot);
             loginButton.appendChild(document.createTextNode(' Connected'));
+            // Hide exclusive message and show story sections
+            document.getElementById('exclusive-message').style.display = 'none';
+            document.getElementById('story-sections').style.display = 'block';
         } else {
             statusDot.classList.add('red-dot');
             loginButton.innerHTML = '';
             loginButton.appendChild(statusDot);
             loginButton.appendChild(document.createTextNode(' Log In'));
+            // Show exclusive message and hide story sections
+            document.getElementById('exclusive-message').style.display = 'block';
+            document.getElementById('story-sections').style.display = 'none';
         }
     }
 
@@ -110,11 +126,17 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function showTopThanksHolders() {
-        document.getElementById('thanks-top-holders').style.display = 'block';
+        const topHolders = document.getElementById('thanks-top-holders');
+        if (topHolders) {
+            topHolders.style.display = 'block';
+        }
     }
 
     function hideTopThanksHolders() {
-        document.getElementById('thanks-top-holders').style.display = 'none';
+        const topHolders = document.getElementById('thanks-top-holders');
+        if (topHolders) {
+            topHolders.style.display = 'none';
+        }
     }
 
     // Handle login button click (MetaMask connection)
@@ -134,6 +156,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Fetch user's THANKS balance and update display
     async function fetchUserBalance() {
+        if (!web3 || accounts.length === 0) return;
+
         const contractAddress = '0x819cF7Fa5024EE479D7e55865C149730c808a165';
         const abi = [
             {
@@ -151,12 +175,17 @@ window.addEventListener('DOMContentLoaded', () => {
                 type: 'function',
             },
         ];
-        const contract = new web3.eth.Contract(abi, contractAddress);
-        const balance = await contract.methods.balanceOf(accounts[0]).call();
-        const decimals = await contract.methods.decimals().call();
-        const tokenBalance = balance / Math.pow(10, decimals);
+        try {
+            const contract = new web3.eth.Contract(abi, contractAddress);
+            const balance = await contract.methods.balanceOf(accounts[0]).call();
+            const decimals = await contract.methods.decimals().call();
+            const tokenBalance = balance / Math.pow(10, decimals);
 
-        document.getElementById('balance-display').textContent = `Account: ${accounts[0]} | THANKS Balance: ${tokenBalance}`;
+            document.getElementById('balance-display').textContent = `Account: ${accounts[0]} | THANKS Balance: ${tokenBalance}`;
+        } catch (error) {
+            console.error('Error fetching balance:', error);
+            document.getElementById('balance-display').textContent = 'Error fetching balance.';
+        }
     }
 
     // Handle mouse hover events on login button to show disconnect option
@@ -179,4 +208,34 @@ window.addEventListener('DOMContentLoaded', () => {
             loginButton.appendChild(document.createTextNode(' Connected'));
         }
     });
+
+    // Initial check on page load
+    async function initialCheck() {
+        if (window.ethereum) {
+            try {
+                accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                if (accounts.length > 0) {
+                    web3 = new Web3(window.ethereum);
+                    const chainId = await web3.eth.getChainId();
+                    if (chainId !== 8453) {
+                        await switchToBaseNetwork();
+                    }
+                    updateLoginStatus(true);
+                    fetchUserBalance();
+                    showScrollingBalance();
+                    showTextSections();
+                    showTopThanksHolders();
+                } else {
+                    updateLoginStatus(false);
+                }
+            } catch (error) {
+                console.error(error);
+                updateLoginStatus(false);
+            }
+        } else {
+            updateLoginStatus(false);
+        }
+    }
+
+    initialCheck();
 });

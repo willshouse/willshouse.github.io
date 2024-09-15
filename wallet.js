@@ -27,10 +27,12 @@ window.addEventListener('DOMContentLoaded', () => {
         } else {
             modal.style.display = 'block';
             modalBody.innerHTML = `
-                <h2>No Wallet Detected</h2>
-                <p>Please install a wallet to log in and access other features on willsmusichouse.com.</p>
-                <p><a href="https://rabby.io/" target="_blank">Install Rabby</a><br><a href="https://metamask.io/" target="_blank">Install MetaMask</a></p>
-            `;
+    <h2>No Wallet Detected</h2>
+    <p>Please install a wallet to log in and access other features on willsmusichouse.com.</p>
+    <p><a href="https://rabby.io/" target="_blank">Install Rabby</a><br>
+    <a href="https://metamask.io/" target="_blank">Install MetaMask</a></p>
+    <p>For the best mobile login experience, we recommend using <strong><a href="https://www.coinbase.com/wallet" target="_blank">Coinbase Wallet</a></strong>.</p>
+`;
         }
     }
 

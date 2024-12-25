@@ -2,147 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>willsmusichouse</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Include Web3.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
     <style>
-        /* Centered message style */
-        #exclusive-message {
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.ibb.co/44DSgf0/wmh-pattern.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+        header {
+            background-color: rgba(31, 31, 31, 0.8);
+            color: #fff;
+            padding: 1.5em 1em;
             text-align: center;
-            font-size: 20px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            display: none; /* Hidden initially */
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-transform: lowercase;
+        }
+        header p {
+            font-size: 1.2em;
+            color: #bbb;
+            margin-top: 0.5em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(41, 41, 41, 0.8);
+            padding: 1em 0;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 0.5em 1.5em;
+            margin: 0.5em;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #444;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #f5f5f5;
+            color: #121212;
+        }
+        main {
+            padding: 2em 1em;
+        }
+        .category-section {
+            margin-bottom: 2.5em;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            padding: 1em;
+        }
+        .category-section h2 {
+            font-size: 2em;
+            border-bottom: 2px solid #444;
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
+            color: #fff;
+            text-transform: lowercase;
+        }
+        .playlist-container {
+            display: flex;
+            gap: 1em;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .playlist {
+            flex: 1 1 calc(50% - 1em);
+            background-color: rgba(41, 41, 41, 0.8);
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .playlist iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 8px;
+        }
+        iframe.spotify {
+            border-radius: 12px;
+            width: 100%;
+            height: 352px;
+        }
+        @media (max-width: 768px) {
+            .playlist {
+                flex: 1 1 100%;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <div id="header-content">
-            <h1>willsmusichouse</h1>
-            <button id="login-button"><span class="status-dot red-dot"></span> Log In</button>
-        </div>
-        <nav>
-            <a href="#" id="tts-link">TTS</a>
-            <a href="#" id="patreon-link">Patreon</a>
-            <a href="#" id="discord-link">Discord</a>
-        </nav>
+        <h1>willsmusichouse</h1>
+        <p>live performances | podcasts | creative content</p>
     </header>
-
-    <!-- Modal Structure -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span id="close-modal" class="close-button">&times;</span>
-            <div id="modal-body"></div>
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- Bouncing Elements Animation -->
-    <div id="animation-container">
-        <div class="bouncing-element" id="disc-logo">
-            <img src="https://pngimg.com/uploads/cd_dvd/cd_dvd_PNG102332.png" alt="CD Logo">
-        </div>
-        <div class="bouncing-element text-element" id="text1">willsmusichouse</div>
-        <div class="bouncing-element text-element" id="text2">@wmhlive</div>
-        <div class="bouncing-element text-element" id="text3">willshouse podcast</div>
-    </div>
-
-    <!-- THANKS Balance Container (Visible only when logged in) -->
-    <div id="thanks-balance-container" style="display: none;">
-        <hr>
-        <div id="thanks-balance-section">
-            <h2>Your THANKS Balance:</h2>
-            <p id="thanks-balance">Connect your wallet to see your balance.</p>
-        </div>
-        <hr>
-    </div>
-
-    <!-- Scrolling Balance and Account Display (Visible only when logged in) -->
-    <div id="scrolling-balance" style="display: none;">
-        <marquee behavior="scroll" direction="left" scrollamount="10" loop="infinite">
-            <span id="balance-display"></span>
-        </marquee>
-    </div>
-    <hr>
-
-    <!-- Content Section (Always visible) -->
-    <div id="content-section">
-        <div id="youtube-embed">
-            <h2>watch the latest content</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/h6S3vOD7Nck?si=wxxKSTRWKqYZ6zyG&amp;start=158" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <div id="additional-embeds">
-                <iframe src="https://www.youtube.com/embed/7Cbwp7XJjyU" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/oYA9vj6xUJI" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/icvQWEiY9cM" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.youtube.com/embed/YH0biziyGuk" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                
+    <nav>
+        <a href="https://discord.gg/9UrtGqkK22" target="_blank">Discord</a>
+        <a href="https://www.instagram.com/wmhlive/" target="_blank">Instagram</a>
+        <a href="https://www.patreon.com/willsmusichouse" target="_blank">Patreon</a>
+        <a href="https://www.youtube.com/playlist?list=PLZVq8uBGlTG0PdWyBDKPywFZJXRVK0y8U" target="_blank">willshouse live</a>
+        <a href="https://www.youtube.com/playlist?list=PLZVq8uBGlTG1kF5aAdxjQ6OjmOpfRWNC6" target="_blank">willshouse podcast</a>
+        <a href="https://www.youtube.com/@willsmusichouse/playlists" target="_blank">other content</a>
+    </nav>
+    <main>
+        <section id="willshouse-live" class="category-section">
+            <h2>willshouse live</h2>
+            <div class="playlist-container">
+                <div class="playlist">
+                    <iframe src="https://www.youtube.com/embed/videoseries?si=GwzHycGL-MdPkqm8&amp;start=1&amp;list=PLZVq8uBGlTG0PdWyBDKPywFZJXRVK0y8U" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
-        </div>
-        <div id="embed-section">
-            <h2>donate ETH to support us!</h2>
-            <iframe
-                src="https://embed.ipfscdn.io/ipfs/bafybeigdie2yyiazou7grjowoevmuip6akk33nqb55vrpezqdwfssrxyfy/erc20.html?contract=0x819cF7Fa5024EE479D7e55865C149730c808a165&chain=%7B%22name%22%3A%22Base%22%2C%22chain%22%3A%22ETH%22%2C%22rpc%22%3A%5B%22https%3A%2F%2F8453.rpc.thirdweb.com%2F%24%7BTHIRDWEB_API_KEY%7D%22%5D%2C%22nativeCurrency%22%3A%7B%22name%22%3A%22Ether%22%2C%22symbol%22%3A%22ETH%22%2C%22decimals%22%3A18%7D%2C%22shortName%22%3A%22base%22%2C%22chainId%22%3A8453%2C%22testnet%22%3Afalse%2C%22slug%22%3A%22base%22%2C%22icon%22%3A%7B%22url%22%3A%22ipfs%3A%2F%2FQmaxRoHpxZd8PqccAynherrMznMufG6sdmHZLihkECXmZv%22%2C%22width%22%3A1200%2C%22height%22%3A1200%2C%22format%22%3A%22png%22%7D%7D&clientId=e602589e6814eff3686bdea9a191db4c&theme=light&primaryColor=purple"
-                width="100%"
-                height="600px"
-                style="max-width:100%;"
-                frameborder="0"
-            ></iframe>
-        </div>
-    </div>
-
-    <!-- Exclusive content login message (below embeds and above stories) -->
-    <div id="exclusive-message">
-        Log in to see exclusive content!!
-    </div>
-
-    <!-- Text Sections (Visible only when logged in) -->
-    <div id="story-sections" style="display: none;">
-        <div class="text-section">
-            <h2>Inside the Cleveland Music Scene: An Interview with 55Bagz</h2>
-            <p>By Buddy – Will's AI</p>
-            <p>During a candid interview on the WillsHouse Podcast, 55Bagz shares his wild journey through the Cleveland music scene, including near-death experiences, label negotiations, and stories of his come-up.</p>
-            <a href="stories.html#story1">Read Full Story</a>
-        </div>
-
-        <div class="text-section">
-            <h2>UnknownPhrazes: From Rap to EDM - Exploring a New Path</h2>
-            <p>By Buddy – Will's AI</p>
-            <p>UnknownPhrazes sits down on the WillsHouse Podcast to discuss his evolution from rap to electronic music, his upcoming EP, and how Cleveland’s underground scene continues to inspire him.</p>
-            <a href="stories.html#story2">Read Full Story</a>
-        </div>
-
-        <div class="text-section">
-            <h2>Inside the Minds of Sav and Visual 9: Music, Creativity, and Life Lessons</h2>
-            <p>By Buddy – Will's AI</p>
-            <p>Sav and Visual 9 open up about their creative processes, personal growth, and upcoming projects during their interview on the WillsHouse Podcast. Get a glimpse into their evolving careers.</p>
-            <a href="stories.html#story3">Read Full Story</a>
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- Connect With Us Section -->
-    <footer>
-        <div id="connect-with-us">
-            <h2>Connect with Us</h2>
-            <p>Stay connected and explore more and click the links below to dive in directly:</p>
-            <ul>
-                <li><strong><a href="https://www.youtube.com/@willsmusichouse" target="_blank">willsmusichouse</a></strong> – Visit our YouTube channel for exclusive music content, interviews, and live performances.</li>
-                <li><strong><a href="https://www.youtube.com/@willsmusichouse/streams" target="_blank">willshouse podcast</a></strong> – Tune in to our podcast to hear the latest on music, gaming, and pop culture. Don’t forget to catch our live streams!</li>
-                <li><strong><a href="https://www.instagram.com/wmhlive/" target="_blank">@wmhlive</a></strong> – Follow us on Instagram for behind-the-scenes content, live event updates, and more.</li>
-                <li><strong><a href="https://discord.gg/9UrtGqkK22" target="_blank">Join the Discord</a></strong> – Be part of the conversation! Share music, join voice chats, and even call in to the podcast live.</li>
-            </ul>
-            <p>Click any of the headings above or the links here to get involved and stay connected with us across all platforms.</p>
-        </div>
-    </footer>
-
-    <!-- Main JavaScript File -->
-    <script src="wallet.js"></script>
-    <script src="game.js"></script>
-    <script src="modal.js"></script>
-
+        </section>
+        <section id="willshouse-podcast" class="category-section">
+            <h2>willshouse podcast</h2>
+            <div class="playlist-container">
+                <div class="playlist">
+                    <iframe src="https://www.youtube.com/embed/videoseries?si=QU9erFvEcRVUyHPu&amp;start=1&amp;list=PLZVq8uBGlTG1kF5aAdxjQ6OjmOpfRWNC6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+        <section id="spotify-playlist" class="category-section">
+            <h2>spotify playlist</h2>
+            <iframe class="spotify" src="https://open.spotify.com/embed/playlist/48wDXFkDwPgFW9M1i1snyy?utm_source=generator&autoplay=true" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </section>
+    </main>
 </body>
 </html>

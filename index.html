@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             background: url('https://i.ibb.co/44DSgf0/wmh-pattern.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background-size: contain;
             color: #f5f5f5;
             line-height: 1.6;
         }
@@ -94,6 +94,23 @@
             height: 352px;
         }
         @media (max-width: 768px) {
+            body {
+                background-size: auto;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            nav {
+                flex-direction: column;
+                padding: 0.5em 0;
+            }
+            nav a {
+                font-size: 0.9em;
+                padding: 0.5em;
+            }
             .playlist {
                 flex: 1 1 100%;
             }
